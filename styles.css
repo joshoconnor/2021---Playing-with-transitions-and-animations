@@ -1,0 +1,82 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.book {
+    position: relative;
+    width: 200px;
+    height: 300px;
+    transform-style: preserve-3d;
+    perspective: 2000px;
+    transition: transform 2s;
+    transform:
+    rotate3d(1, 0, 0, 45deg)
+    rotate3d(0, 0, 1, -45deg);
+}
+
+.page {
+    position: absolute;
+    border: 1px solid #000;
+    width: 200px;
+    height: 300px;
+    transform-style: preserve-3d;
+    transition:
+    transform 2s;
+    transform-origin: left;
+}
+
+.page-one-front {
+    z-index: 2;
+    background: red;
+    backface-visibility: hidden;
+}
+.page-one-back {
+    z-index: 1;
+    background: blue;
+}
+
+.pop-up-right,
+.pop-up-left {
+    position: absolute;
+    transform-style: preserve-3d;
+    transform-origin: left;
+    top: 100px;
+    left: 98px;
+    border: 1px solid #000;
+    background: red;
+    width: 100px;
+    height: 100px;
+    transition: transform 2s;
+}
+
+.page-two {
+    z-index: 0;
+}
+
+.book:hover {
+    transform:
+    rotate3d(1, 0, 0, 45deg)
+    rotate3d(0, 0, 1, 0deg)
+    rotate3d(0, 1, 0, -45deg)
+    translateX(100px);
+}
+
+.book:hover .page-one-front,
+.book:hover .page-one-back {
+    transform: rotate3d(0, 1, 0, -90deg);
+}
+
+.book:hover .pop-up-left {
+    transform: rotate3d(0, 1, 0, 90deg);
+}
+
+.book:hover .pop-up-right {
+    transform: rotate3d(0, 1, 0, -90deg);
+}
